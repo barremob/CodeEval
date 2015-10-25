@@ -31,7 +31,6 @@ class Program
                 bool p1 = ((value & (1 << pos1)) != 0);
                 bool p2 = ((value & (1 << pos2)) != 0);
                 
-                // For some reason p1 && p2 didn't work at CodeEval
                 Console.WriteLine((p1 == p2) ? "true" : "false");
             }
         }
