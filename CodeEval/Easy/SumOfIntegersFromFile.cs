@@ -1,4 +1,11 @@
-﻿using System.IO;
+﻿/*
+Score:      100
+Time:       173
+Memory:     4861952
+Points:     30.639
+*/
+
+using System.IO;
 using System;
 
 class Program

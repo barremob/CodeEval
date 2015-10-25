@@ -1,5 +1,13 @@
-﻿using System.IO;
+﻿/*
+Score:      100
+Time:       180
+Memory:     4890624
+Points:     30.604
+*/
+
+using System.IO;
 using System;
+
 class Program
 {
     static void Main(string[] args)
