@@ -13,7 +13,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("FizzBuzzData.txt"))
+        using (StreamReader reader = File.OpenText(@"Easy\FizzBuzzData.txt"))
         {
             while (!reader.EndOfStream)
             {

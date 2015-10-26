@@ -16,7 +16,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("StackImplementation.txt"))
+        using (StreamReader reader = File.OpenText(@"Moderate\StackImplementation.txt"))
         {
             while (!reader.EndOfStream)
             {

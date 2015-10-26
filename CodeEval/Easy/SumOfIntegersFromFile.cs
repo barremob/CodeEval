@@ -13,7 +13,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("SumOfIntegersFromFile.txt"))
+        using (StreamReader reader = File.OpenText(@"Easy\SumOfIntegersFromFile.txt"))
         {
             int returnVal = 0;
             while (!reader.EndOfStream)

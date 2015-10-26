@@ -13,7 +13,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("ReverseAndAdd.txt"))
+        using (StreamReader reader = File.OpenText(@"Moderate\ReverseAndAdd.txt"))
         {
             while (!reader.EndOfStream)
             {

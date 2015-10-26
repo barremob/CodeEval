@@ -30,13 +30,17 @@ class Program
 {
     static void Main(string[] args)
     {
+        string tmp = "";
         for (int i = 1; i < 100; i++)
         {
             if (i % 2 != 0)
             {
-                Console.WriteLine(i);
+                //Console.WriteLine(i);
+                tmp += i +"\n";
             }
         }
+
+        Console.Write(tmp);
         Console.ReadKey();
     }
 }

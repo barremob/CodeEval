@@ -15,7 +15,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("NumberPairs.txt"))
+        using (StreamReader reader = File.OpenText(@"Moderate\NumberPairs.txt"))
         {
             while (!reader.EndOfStream)
             {

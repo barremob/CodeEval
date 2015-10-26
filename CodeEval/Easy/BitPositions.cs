@@ -13,7 +13,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("BitPositions.txt"))
+        using (StreamReader reader = File.OpenText(@"Easy\BitPositions.txt"))
         {
             while (!reader.EndOfStream)
             {

@@ -14,7 +14,7 @@ class Program
     static void Main(string[] args)
     {
         //using (StreamReader reader = File.OpenText(args[0]))
-        using (StreamReader reader = File.OpenText("TimeToEat.txt"))
+        using (StreamReader reader = File.OpenText(@"Easy\TimeToEat.txt"))
         {
             while (!reader.EndOfStream)
             {
