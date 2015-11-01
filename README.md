@@ -1,29 +1,10 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Just some CodeEval tests
 
-### What is this repository for? ###
+- C# and C++ with Visual Sudio 2015
+- PHP Eclips PHP Mars
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+I try to add the test results in the source code file itself.
+But don't really think there is any added value to these results.
+Because I have seen different results with exactly the same code, but on different days.
