@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easy\CalculateDistance.cs" />
+    <Compile Include="Easy\OddNumbers.cs" />
+    <Compile Include="Easy\TrickOrTreat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
