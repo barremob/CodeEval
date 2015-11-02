@@ -10,8 +10,6 @@ using System;
 
 class Program
 {
-
-
 	static void Main(string[] args)
 	{
 		//using (StreamReader reader = File.OpenText(args[0]))
