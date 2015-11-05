@@ -1,18 +1,20 @@
 ﻿/*
-Score:      32.5
-Time:       169
-Memory:     5005312
-Points:     21.346
+Score:      100
+Time:       243
+Memory:     2793472
+Points:     92.122
 */
 
 using System.IO;
 using System;
+using System.Text;
 
 class Program
 {
-	static char[] rtnChars;
+	static string[] rtnStrings;
 	static int currIndex = 0;
-	static string rtnData = "";
+	static int permutationsNbr = 0;
+	static StringBuilder strBuilder;
 
 	static void Main(string[] args)
 	{
@@ -29,36 +31,35 @@ class Program
 
 				char[] chars = line.ToCharArray();
 				Array.Sort<char>(chars);
-				rtnData = "";
 				currIndex = 0;
-				int permutationsNbr = CalcPermutationNbr(chars.Length);
-
-				rtnChars = new char[permutationsNbr * chars.Length];
-
+				permutationsNbr = CalcPermutationNbr(chars.Length);
+				rtnStrings = new string[permutationsNbr];
 				GetPermutation(chars, 0, chars.Length - 1);
+				Array.Sort<string>(rtnStrings, StringComparer.Ordinal);
+				strBuilder = new StringBuilder();
 
-				for (int i = 0; i < rtnChars.Length; i++)
+				for (int i = 0; i < rtnStrings.Length; i++)
 				{
-					if (i > chars.Length - 1 && i % chars.Length == 0)
+					strBuilder.Append(rtnStrings[i]);
+					if (i < permutationsNbr-1)
 					{
-						rtnData += ",";
+						strBuilder.Append(",");
 					}
-					rtnData += rtnChars[i];
 				}
 
-				Console.WriteLine(rtnData);
+				Console.WriteLine(strBuilder.ToString());
 			}
 		}
 
 		Console.ReadKey();
 	}
-
+	
 	static void GetPermutation(char[] characters, int start, int length)
 	{
 		if (start == length)
 		{
-			Array.Copy(characters, 0, rtnChars, currIndex, characters.Length);
-			currIndex += characters.Length;
+			rtnStrings[currIndex] = new string(characters);
+			currIndex++;
 		}
 		else
 		{
