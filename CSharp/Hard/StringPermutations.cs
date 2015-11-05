@@ -1,8 +1,8 @@
 ﻿/*
 Score:      100
 Time:       243
-Memory:     2793472
-Points:     92.122
+Memory:     4882432
+Points:     87.142
 */
 
 using System.IO;
