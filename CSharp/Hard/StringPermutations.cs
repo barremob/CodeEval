@@ -30,7 +30,7 @@ class Program
 				}
 
 				char[] chars = line.ToCharArray();
-				Array.Sort<char>(chars);
+				//Array.Sort<char>(chars);
 				currIndex = 0;
 				permutationsNbr = CalcPermutationNbr(chars.Length);
 				rtnStrings = new string[permutationsNbr];
