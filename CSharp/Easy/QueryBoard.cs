@@ -14,12 +14,12 @@ using System;
 class Program
 {
 	static QueryBoardCommands commands;
-	static SimpleList<int> rows = new SimpleList<int>();
-	static SimpleList<int> cols = new SimpleList<int>();
-	static int[] rowsLastValue;
-	static int[] colsLastValue;
+	static SimpleList<byte> rows = new SimpleList<byte>();
+	static SimpleList<byte> cols = new SimpleList<byte>();
+	static byte[] rowsLastValue;
+	static byte[] colsLastValue;
 
-	static int[,] matrix;
+	static byte[,] matrix;
 
 	static int matrixNormalSize = 256;
 
@@ -42,41 +42,37 @@ class Program
 				switch (data[0])
 				{
 					case "SetRow":
-						int row = Convert.ToInt32(data[1]);
+						byte row = Convert.ToByte(data[1]);
 						commands.Add(1, row, Convert.ToByte(data[2]));
 						if (!rows.Contains(row))
 						{
 							rows.Add(row);
 
 						}
-						//SetRow(Convert.ToInt32(data[1]), Convert.ToByte(data[2]));
 						break;
 					case "SetCol":
-						int col = Convert.ToInt32(data[1]);
+						byte col = Convert.ToByte(data[1]);
 						commands.Add(2, col, Convert.ToByte(data[2]));
 						if (!cols.Contains(col))
 						{
 							cols.Add(col);
 						}
-						//SetCol(Convert.ToInt32(data[1]), Convert.ToByte(data[2]));
 						break;
 					case "QueryRow":
-						commands.Add(3, Convert.ToInt32(data[1]), 0);
-						//Console.WriteLine(QueryRow(Convert.ToInt32(data[1])));
+						commands.Add(3, Convert.ToByte(data[1]), 0);
 						break;
 					case "QueryCol":
-						commands.Add(4, Convert.ToInt32(data[1]), 0);
-						//Console.WriteLine(QueryCol(Convert.ToInt32(data[1])));
+						commands.Add(4, Convert.ToByte(data[1]), 0);
 						break;
 				}
 			}
 		}
 
-		matrix = new int[cols.Count, rows.Count];
-		rowsLastValue = new int[rows.Count];
-		colsLastValue = new int[cols.Count];
+		matrix = new byte[cols.Count, rows.Count];
+		rowsLastValue = new byte[rows.Count];
+		colsLastValue = new byte[cols.Count];
 
-		for (int i = 0; i < commands.Count; i++)
+		for (byte i = 0; i < commands.Count; i++)
 		{
 			switch (commands[i, 0])
 			{
@@ -98,7 +94,7 @@ class Program
 		Console.ReadKey();
 	}
 
-	static void SetRow(int row, int value)
+	static void SetRow(byte row, byte value)
 	{
 		int indexOfRow = rows.IndexOf(row);
 		rowsLastValue[indexOfRow] = value;
@@ -108,7 +104,7 @@ class Program
 		}
 	}
 
-	static void SetCol(int col, int value)
+	static void SetCol(byte col, byte value)
 	{
 		int indexOfCol = cols.IndexOf(col);
 		colsLastValue[indexOfCol] = value;
@@ -118,7 +114,7 @@ class Program
 		}
 	}
 
-	static int QueryRow(int row)
+	static int QueryRow(byte row)
 	{
 		int rtn = 0;
 		int indexOfRow = rows.IndexOf(row);
@@ -140,7 +136,7 @@ class Program
 		return rtn;
 	}
 
-	static int QueryCol(int col)
+	static int QueryCol(byte col)
 	{
 		int rtn = 0;
 		int indexOfCol = cols.IndexOf(col);
@@ -165,14 +161,14 @@ class Program
 
 public class QueryBoardCommands
 {
-	private int[,] data;
+	private byte[,] data;
 	private int nextIndex = 0;
-	private int currentSize = 5;
+	private int currentSize = 160;
 	const int depth = 3;
 
 	public QueryBoardCommands()
 	{
-		data = new int[currentSize, depth];
+		data = new byte[currentSize, depth];
 	}
 
 	public int Count
@@ -180,7 +176,7 @@ public class QueryBoardCommands
 		get { return nextIndex; }
 	}
 
-	public void Add(int action, int colRow, int value)
+	public void Add(byte action, byte colRow, byte value)
 	{
 		if (data.Length == nextIndex * depth)
 		{
@@ -195,7 +191,7 @@ public class QueryBoardCommands
 	private void ExpandArray()
 	{
 		currentSize *= 2;
-		var newArray = new int[currentSize, depth];
+		var newArray = new byte[currentSize, depth];
 
 		for (int i = 0; i < nextIndex; i++)
 		{
@@ -208,7 +204,7 @@ public class QueryBoardCommands
 		data = newArray;
 	}
 
-	public int this[int index, int item]
+	public byte this[byte index, byte item]
 	{
 		get { return data[index, item]; }
 	}
@@ -221,7 +217,7 @@ public class SimpleList<T>
 
 	public SimpleList()
 	{
-		data = new T[5];
+		data = new T[40];
 	}
 
 	public int Count
