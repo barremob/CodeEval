@@ -41,10 +41,8 @@ class Program
 					roadTrip.Add(data[i], Convert.ToInt32(data[i + 1]));
 				}
 
-				data = null;
-
-				Console.WriteLine(roadTrip.PrintRoute());
-			}
+				roadTrip.PrintRoute();
+            }
 		}
 
 		Console.ReadKey();
@@ -94,7 +92,7 @@ public class RoadTrip
 		Array.Copy(distances, fromIndex, distances, fromIndex + 1, nextIndex - fromIndex);
 	}
 
-	public string PrintRoute()
+	public void PrintRoute()
 	{
 		StringBuilder rtn = new StringBuilder();
 		for (int i = 0; i < nextIndex; i++)
@@ -105,14 +103,14 @@ public class RoadTrip
 			}
 			if (i == 0)
 			{
-				rtn.Append(distances[i]);
+				rtn.Append(distances[i].ToString());
 			}
 			else
 			{
-				rtn.Append(distances[i] - distances[i - 1]);
+				rtn.Append((distances[i] - distances[i - 1]).ToString());
 			}
 		}
 
-		return rtn.ToString();
+		Console.WriteLine(rtn.ToString());
 	}
 }
