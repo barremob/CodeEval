@@ -7,9 +7,9 @@ After removing the cities array, it actually uses more memory.
 Reuse the RoadTrip class, just reset the nextIndex to 0 with new input. Also didn't do shit!
 
 Score:      100
-Time:       802
+Time:       466
 Memory:     4874240
-Points:     29.038
+Points:     30.117
 */
 
 using System.IO;
