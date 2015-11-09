@@ -35,15 +35,15 @@ class Program
                 {
                     Push(Convert.ToInt32(input[i]));
                 }
-
+				string rtnData = "";
                 for (int i = 0; i < numbers.Length; i++)
                 {
-                    var poper = Pop();
+                    int poper = Pop();
 
-                    if(i%2==0)
-                        Console.Write(poper + " ");
+                    if(i%2 == 0)
+                        rtnData += poper + " ";
                 }
-                Console.WriteLine();
+                Console.WriteLine(rtnData);
             }
         }
 
@@ -52,9 +52,9 @@ class Program
 
     static void Push(int nbr)
     {
-        index++;
-        numbers[index-1] = nbr;
-    }
+        numbers[index] = nbr;
+		index++;
+	}
 
     static int Pop()
     {
