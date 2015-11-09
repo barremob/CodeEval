@@ -1,6 +1,13 @@
 ﻿/*
+Removed the auto expand for arrays, because there is a fixed maximum of 600.
+Also remove the city names, not really needed for the output result.
+Also tried to lower the memory use, but as usual CodeEval has some weird results.
+After removing the cities array, it actually uses more memory.
+--
+Reuse the RoadTrip class, just reset the nextIndex to 0 with new input. Also didn't do shit!
+
 Score:      100
-Time:       805
+Time:       802
 Memory:     4874240
 Points:     29.038
 */
@@ -11,6 +18,8 @@ using System.Text;
 
 class Program
 {
+	static RoadTrip roadTrip = new RoadTrip();
+
 	static void Main(string[] args)
 	{
 		//using (StreamReader reader = File.OpenText(args[0]))
@@ -24,14 +33,15 @@ class Program
 					continue;
 				}
 
+				roadTrip.Reset();
 				string[] data = line.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-				RoadTrip roadTrip = new RoadTrip();
-
+				
 				for (int i = 0; i < data.Length; i += 2)
 				{
 					roadTrip.Add(data[i], Convert.ToInt32(data[i + 1]));
 				}
+
+				data = null;
 
 				Console.WriteLine(roadTrip.PrintRoute());
 			}
@@ -43,28 +53,26 @@ class Program
 
 public class RoadTrip
 {
-	private string[] cities;
 	private int[] distances;
 	private int nextIndex = 0;
 
 	public RoadTrip()
 	{
-		cities = new string[5];
-		distances = new int[5];
+		distances = new int[600];
 	}
-
+	
 	public int Count
 	{
 		get { return nextIndex; }
 	}
 
+	public void Reset()
+	{
+		nextIndex = 0;
+	}
+
 	public void Add(string city, int distance)
 	{
-		if (distances.Length == nextIndex)
-		{
-			ExpandArray();
-		}
-
 		int insertAtIndex = 0;
 		for (int i = 0; i <= nextIndex; i++)
 		{
@@ -76,33 +84,14 @@ public class RoadTrip
 				break;
 			}
 		}
-
-		cities[insertAtIndex] = city;
+		
 		distances[insertAtIndex] = distance;
-
 		nextIndex++;
 	}
-
+	
 	private void MoveItemsFrom(int fromIndex)
 	{
-		for (int i = nextIndex; i > fromIndex; i--)
-		{
-			cities[i] = cities[i - 1];
-			distances[i] = distances[i - 1];
-		}
-	}
-	
-	public bool Contains(string item)
-	{
-		for (int i = 0; i < nextIndex; i++)
-		{
-			if (cities[i].Equals(item))
-			{
-				return true;
-			}
-		}
-
-		return false;
+		Array.Copy(distances, fromIndex, distances, fromIndex + 1, nextIndex - fromIndex);
 	}
 
 	public string PrintRoute()
@@ -122,14 +111,8 @@ public class RoadTrip
 			{
 				rtn.Append(distances[i] - distances[i - 1]);
 			}
-
 		}
-		return rtn.ToString();
-	}
 
-	private void ExpandArray()
-	{
-		Array.Resize(ref cities, cities.Length * 2);
-		Array.Resize(ref distances, distances.Length * 2);
+		return rtn.ToString();
 	}
 }
