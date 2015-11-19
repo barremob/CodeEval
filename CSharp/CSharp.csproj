@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\BeautifulStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SponsoredChallenges\-SortMatrixColumns.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Easy\" />
     <Folder Include="Hard\" />
     <Folder Include="Moderate\" />
+    <Folder Include="SponsoredChallenges\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
