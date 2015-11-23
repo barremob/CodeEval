@@ -1,8 +1,10 @@
 ﻿/*
+Lower memory footprint by removing the string data array.
+
 Score:      100
-Time:       328
-Memory:     5062656
-Points:     30.200
+Time:       180
+Memory:     4792320
+Points:     30.685
 */
 
 using System.IO;
@@ -28,17 +30,21 @@ class Program
 				int upToNbr = Convert.ToInt32(inputData[1]);
 				int countResult = 0;
 
-				string[] data = new string[upToNbr];
-
-                for (int i = 1; i <= upToNbr; i++)
+				for (int i = 1; i <= upToNbr; i++)
 				{
-					data[i-1] = Convert.ToString(i, 2);
-				}
+					int nbr = i;
+					int countZeros = 0;
 
-				for (int i = 0; i < upToNbr; i++)
-				{
-					int count = data[i].Length - data[i].Replace("0", "").Length;
-					if (count == nbrZero)
+					while (nbr != 0)
+					{
+						if ((nbr & 1) == 0)
+						{
+							countZeros++;
+						}
+						nbr >>= 1;
+					}
+
+					if (countZeros == nbrZero)
 					{
 						countResult++;
 					}
