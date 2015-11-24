@@ -29,7 +29,7 @@ class Program
 			while (!reader.EndOfStream)
 			{
 				string line = reader.ReadLine();
-				if (null == line)
+				if (null == line || line == "")
 				{
 					continue;
 				}
