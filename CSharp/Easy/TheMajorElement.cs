@@ -1,8 +1,8 @@
 ﻿/*
 Score:      100
-Time:       1091
-Memory:     5173248
-Points:     28.773
+Time:       773
+Memory:     5103616
+Points:     29.387
 */
 
 using System.IO;
@@ -19,6 +19,7 @@ class Program
 			while (!reader.EndOfStream)
 			{
 				string line = reader.ReadLine();
+
 				if (null == line || line == "")
 				{
 					continue;
@@ -44,7 +45,7 @@ class Program
 						indexCount++;
 					}
 				}
-				
+
 				int highestNumberIndex;
 				int highestNumber = inputDatas.GetHighestCount(out highestNumberIndex);
 
@@ -69,46 +70,52 @@ public class SimpleList
 	private int[] count;
 	private int nextIndex = 0;
 
+	int lastItem = -1;
+	int lastIndex = 0;
+
 	public SimpleList()
 	{
-		data = new int[100];
-		count = new int[100];
+		data = new int[101];
+		count = new int[101];
 	}
 
 	public void Add(int item)
 	{
-		if (data.Length < nextIndex)
+		if (data.Length <= nextIndex)
 		{
 			ExpandArray();
 		}
-		if (Contains(item))
+
+		int indexOfItem;
+		if (lastItem == item)
 		{
-			int indexOfItem = IndexOf(item);
+			indexOfItem = lastIndex;
+		}
+		else
+		{
+			lastItem = item;
+			indexOfItem = IndexOf(item);
+		}
+
+		if (indexOfItem >= 0)
+		{
 			count[indexOfItem]++;
+			lastIndex = indexOfItem;
 		}
 		else
 		{
 			data[nextIndex] = item;
 			count[nextIndex]++;
+			lastIndex = nextIndex;
 			nextIndex++;
 		}
-	}
-
-	public bool Contains(int item)
-	{
-		for (int i = 0; i < nextIndex; i++)
-		{
-			if (data[i].Equals(item))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void Reset()
 	{
 		nextIndex = 0;
+		lastIndex = -1;
+		lastIndex = 0;
 		count = new int[count.Length];
 	}
 
