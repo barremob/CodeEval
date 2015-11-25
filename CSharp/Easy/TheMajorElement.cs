@@ -1,8 +1,8 @@
 ﻿/*
 Score:      100
-Time:       2486
-Memory:     5435392
-Points:     26.112
+Time:       1091
+Memory:     5173248
+Points:     28.773
 */
 
 using System.IO;
@@ -24,19 +24,31 @@ class Program
 					continue;
 				}
 
-				string[] inputData = line.Split(',');
+				int numberCount = 0;
+				int indexCount = 0;
 
 				inputDatas.Reset();
-
-				for (int i = 0; i < inputData.Length; i++)
+				string number = "";
+				while (indexCount <= line.Length)
 				{
-					inputDatas.Add(inputData[i]);
+					if (indexCount == line.Length || line[indexCount] == ',')
+					{
+						inputDatas.Add(Convert.ToInt32(number));
+						number = "";
+						indexCount++;
+						numberCount++;
+					}
+					else
+					{
+						number += line[indexCount];
+						indexCount++;
+					}
 				}
-
+				
 				int highestNumberIndex;
 				int highestNumber = inputDatas.GetHighestCount(out highestNumberIndex);
 
-				if (highestNumber >= inputData.Length / 2)
+				if (highestNumber >= numberCount / 2)
 				{
 					Console.WriteLine(inputDatas[highestNumberIndex]);
 				}
@@ -53,17 +65,17 @@ class Program
 
 public class SimpleList
 {
-	private string[] data;
+	private int[] data;
 	private int[] count;
 	private int nextIndex = 0;
 
 	public SimpleList()
 	{
-		data = new string[100];
+		data = new int[100];
 		count = new int[100];
 	}
 
-	public void Add(string item)
+	public void Add(int item)
 	{
 		if (data.Length < nextIndex)
 		{
@@ -82,7 +94,7 @@ public class SimpleList
 		}
 	}
 
-	public bool Contains(string item)
+	public bool Contains(int item)
 	{
 		for (int i = 0; i < nextIndex; i++)
 		{
@@ -122,7 +134,7 @@ public class SimpleList
 		Array.Resize(ref count, count.Length * 2);
 	}
 
-	public int IndexOf(string item)
+	public int IndexOf(int item)
 	{
 		for (int i = 0; i < nextIndex; i++)
 		{
@@ -135,7 +147,7 @@ public class SimpleList
 		return -1;
 	}
 
-	public string this[int index]
+	public int this[int index]
 	{
 		get { return data[index]; }
 	}
