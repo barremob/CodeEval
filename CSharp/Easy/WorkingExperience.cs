@@ -1,8 +1,8 @@
 ﻿/*
 Score:      100
 Time:       191
-Memory:     5013504
-Points:     30.482
+Memory:     4919296
+Points:     30.560
 */
 
 using System.IO;
@@ -14,7 +14,8 @@ class Program
 
 	static void Main(string[] args)
 	{
-		using (StreamReader reader = File.OpenText(args[0]))
+		//using (StreamReader reader = File.OpenText(args[0]))
+		using (StreamReader reader = File.OpenText(@"Easy\WorkingExperience.txt"))
 		{
 			while (!reader.EndOfStream)
 			{
@@ -25,7 +26,7 @@ class Program
 				}
 
 				string[] inputData = line.Split(new char[] { ';', ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
-				byte[,] years = new byte[30, 12];
+				bool[,] years = new bool[30, 12];
 
 				for (int i = 0; i < inputData.Length; i += 4)
 				{
@@ -55,7 +56,7 @@ class Program
 						}
 						for (int y = monthStart; y < monthEnd; y++)
 						{
-							years[startYear + x, y] = 1;
+							years[startYear + x, y] = true;
 						}
 						if (x == yearDiff - 2)
 						{
@@ -74,13 +75,18 @@ class Program
 				{
 					for (int y = 0; y < 12; y++)
 					{
-						monthsWorked += years[i, y];
+						if (years[i, y])
+						{
+							monthsWorked++;
+						}
 					}
 				}
 
 				int yearsWorked = monthsWorked / 12;
 				Console.WriteLine(yearsWorked);
 			}
+
+			Console.ReadKey();
 		}
 	}
 }
