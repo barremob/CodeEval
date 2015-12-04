@@ -1,16 +1,16 @@
 ﻿/*
-Because I can't see the input of the data I'm not sure.
-But there are more emails valid than most people would think.
-The check below should be adequate, however I don't check the string after @
+Previous version wasn't good, so this one uses the microsoft check.
+But still not good enough, next are the slow regex expressions.
 
-Score:      65
-Time:       150
-Memory:     4685824
-Points:     37.212
+Score:      90
+Time:       158
+Memory:     4775936
+Points:     51.376
 */
 
 using System.IO;
 using System;
+using System.Net.Mail;
 
 class Program
 {
@@ -27,14 +27,23 @@ class Program
 					continue;
 				}
 
-				int indexOfAt = line.IndexOf('@');
-				int lastIndexOfPoint = line.LastIndexOf('.');
-				bool valid = indexOfAt > 0 && indexOfAt < lastIndexOfPoint;
-
-				Console.WriteLine(valid ? "true" : "false");
+				Console.WriteLine(CheckEmail(line) ? "true" : "false");
 			}
 		}
 
 		Console.ReadKey();
+	}
+
+	public static bool CheckEmail(string email)
+	{
+		try
+		{
+			MailAddress address = new MailAddress(email);
+			return true;
+		}
+		catch (FormatException)
+		{
+			return false;
+		}
 	}
 }
