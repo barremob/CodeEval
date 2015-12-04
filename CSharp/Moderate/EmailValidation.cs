@@ -1,19 +1,23 @@
 ﻿/*
-Previous version wasn't good, so this one uses the microsoft check.
-But still not good enough, next are the slow regex expressions.
-
-Score:      90
-Time:       158
-Memory:     4775936
-Points:     51.376
+Score:      100
+Time:       357
+Memory:     5406720
+Points:     55.460
 */
 
 using System.IO;
 using System;
-using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 class Program
 {
+	static Regex regex = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+	 + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+	 + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+	 + @"([a-zA-Z0-9]+[\w-]+\.)+[a-zA-Z]{1}[a-zA-Z0-9-]{1,23})$", RegexOptions.IgnoreCase);
+
 	static void Main(string[] args)
 	{
 		//using (StreamReader reader = File.OpenText(args[0]))
@@ -36,14 +40,10 @@ class Program
 
 	public static bool CheckEmail(string email)
 	{
-		try
-		{
-			MailAddress address = new MailAddress(email);
+		Match match = regex.Match(email);
+		if (match.Success)
 			return true;
-		}
-		catch (FormatException)
-		{
+		else
 			return false;
-		}
 	}
 }
