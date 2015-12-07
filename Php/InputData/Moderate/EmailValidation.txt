@@ -1,0 +1,12 @@
+foo@bar.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.com
+this is not an email id
+admin#codeeval.com
+good123@bad.comgood123@bad.comgood123@bad.comgood123@bad.com
+foo@bar.com
+this is not an email idgood123@bad.comgood123@bad.comgood123@bad.com
+admin#codeeval.com
+good123@bad.comgood123@bad.comgood123@bad.comgood123@bad.comgood123@bad.com
+foo@bar.com
+this is not an email id
+admin#codeeval.com
+good123@bad.com
